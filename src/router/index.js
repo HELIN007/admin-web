@@ -5,6 +5,10 @@ import { showError } from "../utils/error"
 
 const routes = [
   {
+    path: "/",
+    redirect: "/login",
+  },
+  {
     path: "/login",
     name: "login",
     component: () => import("../views/Login/index.vue"),
