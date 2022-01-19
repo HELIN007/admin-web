@@ -41,8 +41,9 @@ import { useRouter } from "vue-router"
 import { User, Lock } from "@element-plus/icons-vue"
 import { Login } from "../../api"
 import { showError } from "../../utils/error"
+import store from "../../store"
 
-const router = useRouter()
+const router = useRouter() //实例化路由
 const user = reactive({
   username: "admin",
   password: "123456",
@@ -53,8 +54,10 @@ async function GoToLogin() {
   isLoading.value = true
   try {
     const response = await Login(user)
-    const { status, msg, _ } = response.data
+    const { status, msg, data } = response.data
     if (status == 200) {
+      store.dispatch("SetToken", data["token"])
+      store.dispatch("SetUsername", user.username)
       router.push("home")
     } else {
       showError(msg)

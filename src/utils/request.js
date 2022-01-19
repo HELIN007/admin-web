@@ -12,7 +12,7 @@ service.interceptors.request.use(
   },
   (error) => {
     ElMessage.error(error.message)
-    Promise.reject(error.message)
+    return Promise.reject(error.message)
   }
 )
 

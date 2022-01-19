@@ -3,7 +3,7 @@ export const showError = (msg) => {
     type: "error",
     // showClose: true,
     center: true,
-    duration: 1000,
+    duration: 2000,
     message: `错误信息：${msg}`,
   })
 }
