@@ -63,6 +63,7 @@ async function GoToLogin() {
       showError(msg)
       isLoading.value = false
     }
+    console.log("+++", store.state.username, store.state.token)
   } catch (error) {
     showError(error.message)
     isLoading.value = false

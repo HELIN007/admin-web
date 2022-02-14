@@ -17,11 +17,15 @@ import { useRouter } from "vue-router"
 const obj = reactive({
   id: "home",
 })
+const username = reactive({
+  username: store.state.username,
+})
 const router = useRouter()
 
 async function GoToLogout() {
   try {
-    const response = await Logout(store.state.username)
+    console.log("退出登录的账号是：", username)
+    const response = await Logout(username)
     const { status, msg } = response.data
     if (status == 200) {
       store.dispatch("SetToken", "")
@@ -30,6 +34,7 @@ async function GoToLogout() {
     } else {
       showError(msg)
     }
+    console.log("---", store.state.username, store.state.token)
   } catch (error) {
     showError(error.message)
   }
